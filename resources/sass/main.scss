@@ -30,7 +30,7 @@ content {
     flex-direction: column;
     width: 100%;
     height: auto;
-    background: linear-gradient(50deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60%), url("../img/header.jpg");
+    background: linear-gradient(50deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 60%), url("../images/header.jpg");
     
     background-position: top;
     background-size: cover;
@@ -303,97 +303,92 @@ h1 {
 
 
  
-
-
-
-
-
 .feqtured {
     display: flex;
     flex-direction: column;
     background-color: aqua;
+ 
+}
 
-    /* every second item in featured */
-    .category:nth-child(2n - 1) {
+.category {
+    display: flex;
+    flex-direction: row;
+    padding: 16rem 8rem;
+    width: 100%;
+    gap: 4rem;
+}
+
+
+/* every second item in featured */
+.featured .category:nth-child(2n - 1) {
     flex-direction: row-reverse;
     background-color: #442A16;;
     color: aliceblue;
-    }
-    .category {
-        display: flex;
-        flex-direction: row;
-        padding: 16rem 8rem;
-        width: 100%;
-        gap: 4rem;
-    }
+}
+
+/* every second items h3 and p in featured */
+.featured .category:nth-child(2n - 1) p{
+    color: aliceblue;
+    text-align: right;
+}
+
+.featured .category:nth-child(2n - 1) h3{
+    color: aliceblue;
+    text-align: right;
+}
+
+.featured .category:nth-child(2n - 1) .text button{
+    background-color: aliceblue;
+    color: #633D21;
+    border: aliceblue 2px solid;
     
-    /* every second items h3 and p in featured */
-    .category:nth-child(2n - 1) p{
-        color: aliceblue;
-        text-align: right;
-    }
-    
-    .category:nth-child(2n - 1) h3{
-        color: aliceblue;
-        text-align: right;
-    }
-    
-    .category:nth-child(2n - 1) .text button{
-        background-color: aliceblue;
-        color: #633D21;
-        border: aliceblue 2px solid;
-        
-    }
-    
-     .category:nth-child(2n - 1) .text button:hover{
-        background-color: #633D21;
-        color: aliceblue;
-    }
-    
-    .category:nth-child(2n - 1) .text {
-        align-items: end;
-    }
+}
+
+.featured .category:nth-child(2n - 1) .text button:hover{
+    background-color: #633D21;
+    color: aliceblue;
+}
+
+.featured .category:nth-child(2n - 1) .text {
+    align-items: end;
 }
 
 
-
-.image {
+.featured .category .image {
     width: 50%;
     height: 60rem;
-    background-image: url('../img/stairs.jpg');
+    background-image: url('../images/stairs.jpg');
     background-size: cover;
     border-radius: 0.6rem;
-    .text {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 1rem;
-        font-size: 2rem;
-        font-weight: 500;
-    
-    
-        button {
-            padding: 1.8rem 3.5rem;
-            margin-top: 6rem;
-            border-radius: 50px;
-            background-color: #442A16;
-            color: aliceblue;
-            font-size: 1.8rem;
-            font-weight: 500;
-            text-decoration: none;
-            width: fit-content;
-            cursor: pointer;
-            border: none;
-        }
-    
-        button:hover {
-            background-color: #633D21;
-        }
-    }
 }
 
+.featured .category .text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
 
+.featured .category .text button {
+    padding: 1.8rem 3.5rem;
+    margin-top: 6rem;
+    border-radius: 50px;
+    background-color: #442A16;
+    color: aliceblue;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    width: fit-content;
+    cursor: pointer;
+    border: none;
+}
+
+.featured .category .text button:hover {
+    background-color: #633D21;
+}
 
 
 
@@ -401,7 +396,7 @@ h1 {
     display: inline-block;
     width: 100%;
     height: 12rem;
-    background-image: url('../img/bottom.png');
+    background-image: url('../images/bottom.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -458,6 +453,7 @@ h1 {
         font-weight: 400;
         display: none;
         padding-top: 2rem;
+        color: aliceblue;
     }
 
     .answer .open {
@@ -482,7 +478,7 @@ h1 {
     display: inline-block;
     width: 100%;
     height: 30rem;
-    background-image: url('../img/bottom.png');
+    background-image: url('../images/bottom.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

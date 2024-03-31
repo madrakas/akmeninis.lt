@@ -1,6 +1,5 @@
 import './bootstrap';
 import '../css/app.css';
-import '../css/main.scss';
 import '../css/fonts.css';
 import '../css/font-awesome.min.css';
 
