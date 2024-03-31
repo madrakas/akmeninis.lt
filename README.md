@@ -1,66 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
+![Static Badge](https://img.shields.io/badge/%20Coffe-Free-yellow)
+![Eco Status](https://img.shields.io/badge/ECO-Friendly-green.svg)
+[![Discord](https://discord.com/api/guilds/571393319201144843/widget.png)](https://discord.gg/dRwW4rw)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Akmeninis.lt
 
-## About Laravel
+_Stonework maestro's portfolio website_
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🌟 About
+Single page, responsive design portfolio webpage, with convenient content administration.
+It's based on Laravel and React.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+_Project is in works. You can follow my progress in [project site]()_
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🎯 Project features/goals
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+*  Goals and features:
+    *  Responsive design
+    *  Sliding galleries selector
+    *  Pop up galleries
+    *  Collapsing FAQ tabs
+    *  Pop up contact form
+    *  Captcha
+    *  Admin authentication
+    *  Admin can edit texts
+    *  Admin can edit categories
+    *  Admin can add/remove photos in galleries
+    *  Admin change order in galleries
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🧰 Getting Started
 
-## Laravel Sponsors
+### 💻 Prerequisites
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+xampp - _download and install_
 
-### Premium Partners
+```
+https://www.apachefriends.org/
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Node.js - _download and install_
 
-## Contributing
+```
+https://nodejs.org
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Composer - _download and install_
 
-## Code of Conduct
+```
+https://getcomposer.org/download/
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Git - _download and install_
 
-## Security Vulnerabilities
+```
+https://git-scm.com
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 🏃 Run locally
 
-## License
+Would like to run this project locally? Open terminal and follow these steps:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Clone the repo to your xampp htdocs folder
+    ```
+    git clone https://github.com/madrakas/akmeninis.lt.git
+    ```
+2. Run Xampp Apache and MySQL components
+
+3. Install NPM packages
+    ```sh
+    npm i
+    ```
+    or
+    ```sh
+    npm install
+    ```
+4. Install composer packages
+
+    ```sh
+    composer install
+    ```
+    
+6. Run Webpack resource updater
+
+   ```
+   npm start
+   ```
+
+7. Create empty database in Xampp
+
+    ```
+    http://localhost/phpmyadmin
+    ```
+
+8. create _.env_ file in projects parent directory. You can simple copy and rename _.env.example_. Add your database info in _.env_ file
+
+    ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=akmeninis
+    DB_USERNAME=
+    DB_PASSWORD=
+    ```
+    
+9. Run Seeder to add data to your database
+
+    ```
+    php artisan migrate:fresh --seed
+    ```
+
+11. Open [http://localhost/public](http://localhost/public) to view results in your browser.
+   
+### 🧪 Running tests
+
+No tests to run
+
+## 🎅 Authors
+
+Arvydas [Github](https://github.com/madrakas)
+
+## ⚠️ License
+
+Distributed under the MIT License. See LICENSE.txt for more information.
+
+## 🔗 Other resources
+
+No other resources
