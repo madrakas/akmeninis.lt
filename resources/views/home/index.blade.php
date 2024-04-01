@@ -31,7 +31,7 @@
             <section class="about">
                 
                 <h2>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quisquam illo officia voluptatum sit, quae exercitationem esse fugiat magni  praesentium. Ex vero dolores, fuga ratione culpa. Temporibus harum fugit rem aliquid facere sit dolore saepe. Quod eaque ad quisquam amet inventore.
+                    {{ $description }}
                 </h2>
                 <div class="links">
                     <a class="link" href="#services">Į darbų galeriją</a>

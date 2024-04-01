@@ -68,5 +68,9 @@ class DatabaseSeeder extends Seeder
             'priority' => 6,
             'featured_image_id' => 6
         ]);
+
+        DB::table('descriptions')->insert([
+            'description' => 'Assumenda quisquam illo officia voluptatum sit, quae exercitationem esse fugiat magni praesentium. Ex vero dolores, fuga ratione culpa. Temporibus harum fugit rem aliquid facere sit dolore saepe. Quod eaque ad quisquam amet inventore. Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+        ]);
     }
 }
