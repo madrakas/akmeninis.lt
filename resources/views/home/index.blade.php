@@ -68,22 +68,7 @@
                 <div class="logo-bottom">akmeninis.lt</div>
             </div>
             <div class="col2">
-                <div class="row">
-                    <div class="ico"><span class="fa fa-phone"></span></div>
-                    <div class="desc">+370 000 000</div>
-                </div>
-                <div class="row">
-                    <div class="ico"><span class="fa fa-envelope"></span></div>
-                    <div class="desc"><a href="mailto:info@akmeninis">info@akmeninis</a></div>
-                </div>
-                <div class="row">
-                    <div class="ico"><span class="fa fa-map-marker"></span></div>
-                    <div class="desc">Lorem ipsum dolor sit amet.</div>
-                </div>
-                <div class="row">
-                    <div class="ico"><span class="fa fa-clock-o"></span></div>
-                    <div class="desc">Darbo dienomis: 09:00 - 18:00<br/></div>
-                </div>
+                @include('home.contacts')
             </div>
         </footer>
     </content>

@@ -96,5 +96,12 @@ class DatabaseSeeder extends Seeder
             'answer' => 'Answer 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos eligendi voluptatem corrupti consectetur rerum! Repudiandae laborum sed iure. Cruc',
             'priority' => 4
         ]);
+
+        DB::table('contacts')->insert([
+            'phone' => '+370 000 000',
+            'email' => 'info@akmeninis',
+            'address' => 'Lorem ipsum dolor sit amet.',
+            'worktime' => 'Darbo dienomis: 09:00 - 18:00'
+        ]);
     }
 }
