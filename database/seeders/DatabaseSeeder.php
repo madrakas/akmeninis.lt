@@ -72,5 +72,29 @@ class DatabaseSeeder extends Seeder
         DB::table('descriptions')->insert([
             'description' => 'Assumenda quisquam illo officia voluptatum sit, quae exercitationem esse fugiat magni praesentium. Ex vero dolores, fuga ratione culpa. Temporibus harum fugit rem aliquid facere sit dolore saepe. Quod eaque ad quisquam amet inventore. Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
         ]);
+
+        DB::table('questions')->insert([
+            'question' => 'Question 1: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, itaque. Quam, tenetur?',
+            'answer' => 'Answer 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos eligendi voluptatem corrupti consectetur rerum! Repudiandae laborum sed iure. Cruc',
+            'priority' => 1
+        ]);
+
+        DB::table('questions')->insert([
+            'question' => 'Question 2: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, itaque. Quam, tenetur?',
+            'answer' => 'Answer 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos eligendi voluptatem corrupti consectetur rerum! Repudiandae laborum sed iure. Cruc',
+            'priority' => 2
+        ]);
+
+        DB::table('questions')->insert([
+            'question' => 'Question 3: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, itaque. Quam, tenetur?',
+            'answer' => 'Answer 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos eligendi voluptatem corrupti consectetur rerum! Repudiandae laborum sed iure. Cruc',
+            'priority' => 3
+        ]);
+
+        DB::table('questions')->insert([
+            'question' => 'Question 4: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, itaque. Quam, tenetur?',
+            'answer' => 'Answer 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos eligendi voluptatem corrupti consectetur rerum! Repudiandae laborum sed iure. Cruc',
+            'priority' => 4
+        ]);
     }
 }

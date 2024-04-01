@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Description;
+use App\Models\Question;
 
 class HomeController extends Controller
 {
@@ -13,10 +14,12 @@ class HomeController extends Controller
 
         $categories = Category::orderBy('priority')->get();
         $description = Description::first();
+        $questions = Question::orderBy('priority')->get();
 
         return view('home.index',[
             'categories' => $categories,
-            'description' => $description->description
+            'description' => $description->description,
+            'questions' => $questions
         ]);
     }
 }
