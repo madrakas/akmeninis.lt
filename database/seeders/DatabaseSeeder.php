@@ -103,5 +103,9 @@ class DatabaseSeeder extends Seeder
             'address' => 'Lorem ipsum dolor sit amet.',
             'worktime' => 'Darbo dienomis: 09:00 - 18:00'
         ]);
+
+        DB::table('heroes')->insert([
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, aspernatur!',
+        ]);
     }
 }

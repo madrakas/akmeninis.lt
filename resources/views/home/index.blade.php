@@ -22,8 +22,7 @@
             @include('home.header', ['categories' => $categories])
 
             <div class="hero">
-                <h1>Šarūnas Gustaitis<br/>akmens dirbinių meistras.<br/>
-                    Židiniai, interjero ir eksterjero elementai.</h1>
+                <h1>{{ $hero }}</h1>
             </div>
         </div>
         <main>
