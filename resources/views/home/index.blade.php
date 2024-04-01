@@ -50,43 +50,9 @@
             <div class="faq-intro">
 
             </div>
-            <section class="faq">
-               
-                <div class="faq-head">
-                    <h3>Answers to Your Frequently Asked Questions Bellow</h3>
-                </div>
-                <div class="faq-body">
-                    <div class="faq-item">
-                        <div class="question-row">
-                            <div class="question">Question 1: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, itaque. Quam, tenetur?</div>
-                            <div class="answer-button">+</div>
-                        </div>
-                        <div class="answer">Answer 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos eligendi voluptatem corrupti consectetur rerum! Repudiandae laborum sed iure. Ducimus incidunt quos adipisci doloremque minima, dicta vitae saepe sapiente nulla dignissimos, quaerat ratione facilis magnam minus corrupti id laudantium reiciendis consectetur suscipit. Maxime iste aperiam error ipsam molestias! Optio, dolore ea?</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="question-row">
-                            <div class="question">Question 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quaerat ex cupiditate repudiandae minima consectetur nesciunt reiciendis voluptate. Iste nisi nesciunt impedit! Totam, quis quia?</div>
-                            <div class="answer-button">+</div>
-                        </div>
-                        <div class="answer">Answer 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias sapiente illum debitis consequuntur expedita quas, error beatae, dolore numquam sit nulla reiciendis aliquid ea? Corporis illum esse porro error nulla odit libero harum reiciendis vitae adipisci!</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="question-row">
-                            <div class="question">Question 3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis assumenda minima in voluptate? Distinctio, quis?</div>
-                            <div class="answer-button">+</div>
-                        </div>
-                        <div class="answer">Answer 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, nisi ipsam quas autem quis provident? Modi ex officia consequuntur est pariatur maiores aliquam aperiam? Quod, recusandae dolore! Laborum ad voluptates natus dolores!</div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="question-row">
-                            <div class="question">Question 4 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil sapiente perspiciatis, dolores odio fugiat similique fuga ipsam, illum corrupti quos, temporibus accusamus et debitis?
-                            </div>
-                            <div class="answer-button">+</div>
-                        </div>
-                        <div class="answer">Answer 4 Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ipsum!</div>
-                    </div>
-                </div>
-            </section>
+            @if (count($questions) > 0)
+                @include('home.faq', ['questions' => $questions])
+            @endif
             <section class="bottom">
 
             </section>
