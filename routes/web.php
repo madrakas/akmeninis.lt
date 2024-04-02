@@ -29,9 +29,11 @@ use Inertia\Inertia;
 //     return Inertia::render('Welcome', );
 // });
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
