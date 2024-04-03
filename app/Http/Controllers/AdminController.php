@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Hero;
+use App\Models\Description;
 use App\Http\Requests\HeroUpdateRequest;
+use App\Http\Requests\AboutUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -13,7 +15,8 @@ class AdminController extends Controller
     {
         
         $data = [
-            'hero' => Hero::first()
+            'hero' => Hero::first(),
+            'about'=> Description::first()
         ];
             
         return Inertia::render('Admin/Index',  [
@@ -23,7 +26,7 @@ class AdminController extends Controller
     }
 
     //Validate request
-    public function update(HeroUpdateRequest $request){
+    public function updateHero(HeroUpdateRequest $request){
         
         $heroId = $request->id;
         $hero = Hero::find($heroId);
@@ -31,6 +34,17 @@ class AdminController extends Controller
         $hero->save();
         $message = 'Duomenys išdsaugoti';
         return ['hero' => Hero::find($heroId), 
+                'message' => $message
+            ];
+    }
+
+    public function updateAbout(AboutUpdateRequest $request){
+        $descriptionID = $request->id;
+        $about = Description::find($descriptionID);
+        $about->description = $request->description;
+        $about->save();
+        $message = 'Duomenys išdsaugoti';
+        return ['about' => Description::find($descriptionID), 
                 'message' => $message
             ];
     }

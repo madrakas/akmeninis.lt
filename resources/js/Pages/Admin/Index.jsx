@@ -1,14 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import HeroMain from '@/Components/Dashboard/Hero/HeroMain';
+import Section from '@/Components/Dashboard/Section';
 import { Head } from '@inertiajs/react';
-
-
 
 export default function Index({ auth, data }) {
     
-    // console.log('Data:' + data.hero.description);
 
-    const hero = data.hero;
+    console.log('Index active');
+
     
 
     return (
@@ -17,9 +15,12 @@ export default function Index({ auth, data }) {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
         >
             <Head title="Dashboard" />
+            <div className="py-12">
+                <Section title="Titulinis tekstas" content="hero" data={data.hero}/>
+                <Section title="Apie tekstas" content="about" data={data.about} />
+            </div>
 
-            <HeroMain hero={hero} />
-
+            
         </AuthenticatedLayout>
     );
 
