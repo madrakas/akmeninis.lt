@@ -1,11 +1,16 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import HeroMain from '@/Components/Dashboard/Hero/HeroMain';
 import { Head } from '@inertiajs/react';
-import { useEffect } from 'react';
 
-export default function Dashboard({ auth }) {
+
+
+export default function Index({ auth, data }) {
     
-    // console.log('Data:' + data);
+    // console.log('Data:' + data.hero.description);
+
+    const hero = data.hero;
+    
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -13,7 +18,7 @@ export default function Dashboard({ auth }) {
         >
             <Head title="Dashboard" />
 
-            <HeroMain />
+            <HeroMain hero={hero} />
 
         </AuthenticatedLayout>
     );
