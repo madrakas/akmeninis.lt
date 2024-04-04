@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Hero;
 use App\Models\Description;
+use App\Models\Question;
 use App\Http\Requests\HeroUpdateRequest;
 use App\Http\Requests\AboutUpdateRequest;
 
@@ -13,19 +13,17 @@ class AdminController extends Controller
 {
     public function index()
     {
-        
         $data = [
             'hero' => Hero::first(),
-            'about'=> Description::first()
+            'about'=> Description::first(),
+            'faq' => Question::orderBy('priority')->get(),
         ];
             
         return Inertia::render('Admin/Index',  [
             'data' => $data
         ]);
-
     }
 
-    //Validate request
     public function updateHero(HeroUpdateRequest $request){
         
         $heroId = $request->id;
@@ -48,5 +46,4 @@ class AdminController extends Controller
                 'message' => $message
             ];
     }
-
 }

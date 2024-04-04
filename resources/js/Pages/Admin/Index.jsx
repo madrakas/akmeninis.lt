@@ -4,10 +4,8 @@ import { Head } from '@inertiajs/react';
 
 export default function Index({ auth, data }) {
     
-
     console.log('Index active');
-
-    
+    console.log(data.faq);
 
     return (
         <AuthenticatedLayout
@@ -18,11 +16,8 @@ export default function Index({ auth, data }) {
             <div className="py-12">
                 <Section title="Titulinis tekstas" content="hero" data={data.hero}/>
                 <Section title="Apie tekstas" content="about" data={data.about} />
+                <Section title='DUK' content="faq" data={data.faq} />
             </div>
-
-            
         </AuthenticatedLayout>
     );
-
-    
 }
