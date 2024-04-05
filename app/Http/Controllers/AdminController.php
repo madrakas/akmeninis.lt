@@ -8,6 +8,7 @@ use App\Models\Description;
 use App\Models\Question;
 use App\Http\Requests\HeroUpdateRequest;
 use App\Http\Requests\AboutUpdateRequest;
+use App\Http\Requests\QuestionUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -43,6 +44,19 @@ class AdminController extends Controller
         $about->save();
         $message = 'Duomenys išdsaugoti';
         return ['about' => Description::find($descriptionID), 
+                'message' => $message
+            ];
+    }
+
+    public function updateFaq($request){
+        $faqID = $request->id;
+        $faq = Question::find($faqID);
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->priority = $request->priority;
+        $faq->save();
+        $message = 'Duomenys išdsaugoti';
+        return ['faq' => Question::find($faqID), 
                 'message' => $message
             ];
     }

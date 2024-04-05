@@ -34,10 +34,13 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+
+
+Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::put('/hero', [AdminController::class, 'updateHero'])->name('updateHero');
     Route::put('/about', [AdminController::class, 'updateAbout'])->name('updateAbout');
+    Route::put('/faq', [AdminController::class, 'updateFaq'])->name('updateFaq');
 });
 
 Route::middleware('auth')->group(function () {
