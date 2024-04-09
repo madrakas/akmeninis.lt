@@ -48,15 +48,15 @@ class AdminController extends Controller
             ];
     }
 
-    public function updateFaq($request){
-        $faqID = $request->id;
-        $faq = Question::find($faqID);
+    public function updateFaq(QuestionUpdateRequest $request){
+        $faqId = $request->id;
+        $faq = Question::find($faqId);
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->priority = $request->priority;
         $faq->save();
         $message = 'Duomenys išdsaugoti';
-        return ['faq' => Question::find($faqID), 
+        return ['faq' => Question::find($faqId), 
                 'message' => $message
             ];
     }

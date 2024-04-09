@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 export default function Index({ auth, data }) {
     
     console.log('Index active');
-    console.log(data.faq);
+    // console.log(data.faq);
 
     return (
         <AuthenticatedLayout

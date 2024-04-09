@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function Section( { title, subsection } ) {
 
-    const [showBody, setShowBody] = useState(false);    
+    const [showBody, setShowBody] = useState(false);
 
     const toggleShowBody = () => {
         setShowBody((previousState) => !previousState);
