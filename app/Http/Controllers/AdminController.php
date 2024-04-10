@@ -62,11 +62,11 @@ class AdminController extends Controller
     }
 
     public function updateFaqOrder(Request $request){
-        
-        foreach ($request as $order) {
-            $faqId = $order['id'];
+        $priorities = $request->all();
+        foreach ($priorities as $order) {
+            $faqId = $order[0];
             $faq = Question::find($faqId);
-            $faq->priority = $order['priority'];
+            $faq->priority = $order[1];
             $faq->save();
         }
 

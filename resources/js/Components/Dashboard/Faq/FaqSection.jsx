@@ -27,15 +27,7 @@ export default function FaqSection({ data, content }) {
         axios.put('/admin/faqorder', {
             faqOrder: faqOrder
         })
-            .then(response => {
-                setFaq(orderedFaq(data));
-                setFaqOrder(initialFaqOrder());
-                setFormErr('');
-                setFormStatus(response.data.message ? response.data.message : '');
-    })
-
-
-
+         
     }
 
     const reorderFaq = (id, priority) => {
