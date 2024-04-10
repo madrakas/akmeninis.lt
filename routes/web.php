@@ -41,6 +41,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::put('/hero', [AdminController::class, 'updateHero'])->name('updateHero');
     Route::put('/about', [AdminController::class, 'updateAbout'])->name('updateAbout');
     Route::put('/faq', [AdminController::class, 'updateFaq'])->name('updateFaq');
+    Route::put('/faqorder', [AdminController::class, 'updateFaqOrder'])->name('updateFaqOrder');
 });
 
 Route::middleware('auth')->group(function () {

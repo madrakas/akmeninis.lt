@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'; 
 const URL = 'http://akmeninis.lt';
 
-export default function FaqSubsection( { data, maxFaqPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderFaq } ){
+export default function FaqSubsection( { data, maxFaqPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderFaq, saveFaqOrder } ){
     const [faq, setFaq] = useState(data);
     const [faqQuestion, setFaqQuestion] = useState(data.question);
     const [faqAnswer, setFaqAnswer] = useState(data.answer);
@@ -14,6 +16,8 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
             newFaqPriority = maxFaqPriority;
         }
         setFaqPriority(newFaqPriority);
+        reorderFaq(faq.id, newFaqPriority);
+        
 
         console.log(maxFaqPriority);
     }
@@ -62,7 +66,7 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
                     faq.id,
                     faqPriority
                 );
-                
+                saveFaqOrder();
             })
             .catch(error => {
                 setFormErr(error.response.data.message);
@@ -77,20 +81,27 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
                 <div className="mb-6">
                     <input type="hidden" value={data.id}></input>
                     <div>
-                    <label className="block font-medium text-sm text-gray-700">Prioritetas</label>
-                    <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-10" value={faqPriority} readOnly></input>
-                    {/* Priority increase button */}
-                    <button type="button" onClick={() => {
-                        // setFaqPriority(faqPriority + 1);
-                        editFaqPriority(faqPriority + 1);
-                    }}>+</button>
-                    {/* Priority decrease button */}
-                    <button type="button" onClick={() => {
-                        // setFaqPriority(faqPriority - 1);
-                        editFaqPriority(faqPriority - 1);
-                    }}>-</button>
+                        <label className="block font-medium text-sm text-gray-700">Prioritetas</label>
+                        <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-10" value={faqPriority} readOnly></input>
+                        {/* Priority increase button */}
+
+                        
+                        <button type="button" className="p-2.5 ml-4" onClick={() => {
+                            // setFaqPriority(faqPriority + 1);
+                            editFaqPriority(faqPriority + 1);
+                        }}> 
+                            <FontAwesomeIcon icon={faArrowDown} />
+                        </button>
+                        {/* Priority decrease button */}
+                        <button type="button" className="p-2.5 ml-4" onClick={() => {
+                            // setFaqPriority(faqPriority - 1);
+                            editFaqPriority(faqPriority - 1);
+                        }}>
+                            <FontAwesomeIcon icon={faArrowUp} />
+                        </button>
                     </div>
                     
+
                     <label className="block font-medium text-sm text-gray-700">Klausimas</label>
                     <input type="text"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 "

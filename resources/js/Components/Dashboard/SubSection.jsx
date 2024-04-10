@@ -4,7 +4,7 @@ import AboutSubSection from './About/AboutSubsection';
 import FaqSubsection from './Faq/FaqSubsection';
 import { useState } from 'react';
 
-export default function SubSection( { content, data, maxFaqPriority, reorderFaq } ) {
+export default function SubSection( { content, data, maxFaqPriority, reorderFaq, saveFaqOrder } ) {
     const [formErr, setFormErr] = useState('');
     const [formStatus, setFormStatus] = useState('');
     const [saveData, setSaveData] = useState(null);
@@ -29,7 +29,7 @@ export default function SubSection( { content, data, maxFaqPriority, reorderFaq 
     } else if(content === 'about'){
         subContent = <AboutSubSection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
     } else if (content === 'faq'){
-        subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq}/>
+        subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder}/>
     }
     
     return (

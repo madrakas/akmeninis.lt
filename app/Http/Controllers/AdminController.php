@@ -60,4 +60,18 @@ class AdminController extends Controller
                 'message' => $message
             ];
     }
+
+    public function updateFaqOrder(Request $request){
+        
+        foreach ($request as $order) {
+            $faqId = $order['id'];
+            $faq = Question::find($faqId);
+            $faq->priority = $order['priority'];
+            $faq->save();
+        }
+
+        $message = 'Duomenys išdsaugoti';
+        return ['message' => $message
+            ];
+    }
 }

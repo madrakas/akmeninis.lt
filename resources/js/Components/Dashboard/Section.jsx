@@ -14,6 +14,4 @@ export default function Section( { title, data, content  } ) {
             <SectionLayout title={title}  subsection={<FaqSection data={data} content={content} />}/>
         );
     }
-
-
 }
