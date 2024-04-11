@@ -1,10 +1,17 @@
 
 import SectionLayout from '@/Layouts/Dashboard/SectionLayout';
 import SubSection from '@/Components/Dashboard/SubSection';
-import { useState } from 'react';
+import FaqSection from './Faq/FaqSection';
+
 
 export default function Section( { title, data, content  } ) {
-    return (
-        <SectionLayout title={title}  subsection={<SubSection data={data} content={content} />}/>
-    );
+    if (content === 'hero'|| content === 'about') {
+        return (
+            <SectionLayout title={title}  subsection={<SubSection data={data} content={content} />}/>
+        );
+    } else if (content === 'faq') {
+        return (
+            <SectionLayout title={title}  subsection={<FaqSection data={data} content={content} />}/>
+        );
+    }
 }
