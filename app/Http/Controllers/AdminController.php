@@ -62,10 +62,23 @@ class AdminController extends Controller
     }
 
     public function updateFaqOrder(Request $request){
-        $priorities = $request->all();
-        foreach ($priorities as $order) {
+        
+        dump( $request->faqOrder);
+
+        // userialize orders Json
+        $orders = json_decode($request->faqOrder, true);
+        
+        dump($orders);
+        foreach ($orders as $order) {
             $faqId = $order[0];
             $faq = Question::find($faqId);
+
+            dump('Faq id: ' . $faq->id . 
+                '<br />Faq priority: ' . $faq->priority . 
+                '<br/>Order ID: ' . $order[0] .
+                '<br/>New priority: ' . $order[1]);
+
+            
             $faq->priority = $order[1];
             $faq->save();
         }

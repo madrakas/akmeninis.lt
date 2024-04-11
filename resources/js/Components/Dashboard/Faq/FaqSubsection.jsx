@@ -4,6 +4,7 @@ import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 const URL = 'http://akmeninis.lt';
 
 export default function FaqSubsection( { data, maxFaqPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderFaq, saveFaqOrder } ){
+// export default function FaqSubsection( { data, maxFaqPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderFaq, editData } ){
     const [faq, setFaq] = useState(data);
     const [faqQuestion, setFaqQuestion] = useState(data.question);
     const [faqAnswer, setFaqAnswer] = useState(data.answer);
@@ -17,9 +18,6 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
         }
         setFaqPriority(newFaqPriority);
         reorderFaq(faq.id, newFaqPriority);
-        
-
-        console.log(maxFaqPriority);
     }
 
     //If save button is clicked in SubSection
@@ -35,7 +33,7 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
         if (resetData) {
             setFaqQuestion(faq.question);
             setFaqAnswer(faq.answer);
-            setFaqPriority(faq.priority);
+            // setFaqPriority(faq.priority);
             setResetData(null);
         }
     }, [resetData]);
@@ -62,11 +60,12 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
                 setFormErr('');
                 setFormStatus(response.data.message ? response.data.message : '');
                 //refresh list
-                reorderFaq(
-                    faq.id,
-                    faqPriority
-                );
+                // reorderFaq(
+                //     faq.id,
+                //     faqPriority
+                // );
                 saveFaqOrder();
+
             })
             .catch(error => {
                 setFormErr(error.response.data.message);
@@ -74,9 +73,7 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
     };
 
     return (
-        
         <>
-        
             <div className="faq-item" key={data.id}>
                 <div className="mb-6">
                     <input type="hidden" value={data.id}></input>
