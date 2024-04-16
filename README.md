@@ -10,10 +10,9 @@ _Stonework maestro's portfolio website_
 <br>
 
 ## 🌟 About
-Single page, responsive design portfolio webpage, with convenient content administration.
-It's based on Laravel and React.
+Single page, responsive design portfolio webpage, with convenient content administration based on Laravel and React.
 
-_Project is in works. You can follow my progress in [project site]()_
+_Project is under development. You can follow my progress in [project site]()_
 
 
 ## 🎯 Project features/goals
