@@ -60,7 +60,7 @@ export default function FaqSubsectionAdd( { data, setData, saveData, setSaveData
 
                     <h3 className='mb-4'>Naujas klausimas</h3>
                     
-                <label className="block font-medium text-sm text-gray-700">Klausimas</label>
+                    <label className="block font-medium text-sm text-gray-700">Klausimas</label>
                     <input type="text"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 "
                         onChange={ (e) => {setFaqQuestion(e.target.value)}}                         

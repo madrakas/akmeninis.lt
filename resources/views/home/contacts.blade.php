@@ -24,6 +24,6 @@
 @if ($contacts->worktime != null)
 <div class="row">
     <div class="ico"><span class="fa fa-clock-o"></span></div>
-    <div class="desc">{{ $contacts->worktime }}</div>
+    <div class="desc">{!! nl2br(e($contacts->worktime))!!}</div>
 </div>
 @endif

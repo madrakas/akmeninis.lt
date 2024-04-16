@@ -3,6 +3,7 @@ import HeroSubSection from './Hero/HeroSubsection';
 import AboutSubSection from './About/AboutSubsection';
 import FaqSubsection from './Faq/FaqSubsection';
 import FaqSubsectionAdd  from './Faq/FaqSubsectionAdd';
+import ContactSubsection from './Contact/ContactSubsection';
 import { useState } from 'react';
 
 export default function SubSection( { content, data, setData, maxFaqPriority, reorderFaq, saveFaqOrder, deleteFaq } ) {
@@ -31,6 +32,8 @@ export default function SubSection( { content, data, setData, maxFaqPriority, re
         subContent = <HeroSubSection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
     } else if(content === 'about'){
         subContent = <AboutSubSection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
+    } else if (content === 'contact'){
+        subContent = <ContactSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
     } else if (content === 'faq'){
         subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
         deleteForm = (e) => {
@@ -44,6 +47,7 @@ export default function SubSection( { content, data, setData, maxFaqPriority, re
     } else if (content === 'newFaq'){
         subContent  = <FaqSubsectionAdd data={data} setData={setData} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}></FaqSubsectionAdd>
     }
+
     
     return (
         // Subsection layout
