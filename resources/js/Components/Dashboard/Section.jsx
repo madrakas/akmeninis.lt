@@ -5,7 +5,7 @@ import FaqSection from './Faq/FaqSection';
 
 
 export default function Section( { title, data, content  } ) {
-    if (content === 'hero'|| content === 'about') {
+    if (content === 'hero'|| content === 'about' || content === 'contact') {
         return (
             <SectionLayout title={title}  subsection={<SubSection data={data} content={content} />}/>
         );

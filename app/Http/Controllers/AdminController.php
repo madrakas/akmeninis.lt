@@ -6,10 +6,12 @@ use Inertia\Inertia;
 use App\Models\Hero;
 use App\Models\Description;
 use App\Models\Question;
+use App\Models\Contact;
 use App\Http\Requests\HeroUpdateRequest;
 use App\Http\Requests\AboutUpdateRequest;
 use App\Http\Requests\QuestionUpdateRequest;
 use App\Http\Requests\QuestionAddRequest;
+use App\Http\Requests\ContactUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -19,6 +21,7 @@ class AdminController extends Controller
             'hero' => Hero::first(),
             'about'=> Description::first(),
             'faq' => Question::orderBy('priority')->get(),
+            'contact' => Contact::first(),
         ];
             
         return Inertia::render('Admin/Index',  [
@@ -112,5 +115,19 @@ class AdminController extends Controller
             'id' => $id,
             'priority' => $faq->priority
         ];
+    }
+
+    public function updateContact(ContactUpdateRequest $request){
+        $contactId = $request->id;
+        $contact = Contact::find($contactId);
+        $contact->address = $request->address;
+        $contact->phone = $request->phone;
+        $contact->email = $request->email;
+        $contact->worktime = $request->worktime;
+        $contact->save();
+        $message = 'Duomenys išdsaugoti';
+        return ['contact' => Contact::find($contactId), 
+                'message' => $message
+            ];
     }
 }

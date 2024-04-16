@@ -44,8 +44,6 @@
                 @include('home.services', ['categories' => $categories])
             @endif
            
-            
-
             <div class="faq-intro">
 
             </div>

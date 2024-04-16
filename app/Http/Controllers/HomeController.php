@@ -27,7 +27,7 @@ class HomeController extends Controller
             'questions' => $questions,
             'contacts' => $contacts,
             'hero' => $hero
-
         ]);
     }
 }
+
