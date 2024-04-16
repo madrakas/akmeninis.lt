@@ -35,14 +35,13 @@ export default function SubSection( { content, data, maxFaqPriority, reorderFaq,
         subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
         
         deleteForm = (e) => {
-        e.preventDefault();
-        deleteFaq(data.id);
-        setResetData(1);
-        setFormErr('');
-        setFormStatus('');
-        console.log('delete button pressed');
+            e.preventDefault();
+            deleteFaq(data.id);
+            setResetData(1);
+            setFormErr('');
+            setFormStatus('');
+            console.log('Subsection executing deleteForm with id: ' + data.id);
         }
-     
     } 
     
     return (
