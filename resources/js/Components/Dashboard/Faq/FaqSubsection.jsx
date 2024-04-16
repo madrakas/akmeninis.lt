@@ -79,7 +79,7 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
                     <input type="hidden" value={data.id}></input>
                     <div>
                         <label className="block font-medium text-sm text-gray-700">Prioritetas</label>
-                        <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 w-10" value={faqPriority} readOnly></input>
+                        
                         {/* Priority increase button */}
 
                         

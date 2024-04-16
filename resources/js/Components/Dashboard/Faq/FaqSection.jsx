@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SubSection from '../SubSection';
 import Modal from '@/Components/Modal';
-import infoModal from '@/Components/Dashboard/InfoModal';
+import InfoModal from '@/Components/Dashboard/InfoModal';
 import DangerButton from '@/Components/DangerButton';
 import SecondaryButton from '@/Components/SecondaryButton';
-import InfoModal from '@/Components/Dashboard/InfoModal';
+
 
 
 
@@ -15,6 +15,12 @@ export default function FaqSection({ data, content }) {
     const [deleteID, setDeleteID] = useState(false);
     const [newData, setNewData] = useState(data);
     const [modalPlaceholder, setModalPlaceholder] = useState('');
+
+    useEffect(() => {
+        console.log('newData: ' + newData);
+        
+        setFaq(orderedFaq(newData));
+    }, [newData])
     
 
     
@@ -49,7 +55,6 @@ export default function FaqSection({ data, content }) {
 
     const reorderFaq = (id, priority) => {
         const tmpData = [...newData];
-
         const oldIndex = tmpData.findIndex(d => d.priority === priority);
         const oldID = tmpData[oldIndex].id;
         const newIndex = tmpData.findIndex(d => d.id === id);
@@ -90,12 +95,13 @@ export default function FaqSection({ data, content }) {
             //delete with axios
             axios.delete('/admin/faq/' + deleteID)
                 .then(response => {
-                    const tempData = data.filter(d => d.id !== deleteID);
+                    const tempData = newData.filter(d => d.id !== deleteID);
                     setNewData(tempData);
                     setFaq(orderedFaq(tempData));
                     setDeleteID(null);
                     console.log('Deleted ID: ' + deleteID);
                     setModalPlaceholder(<InfoModal content={response.data.message} />);
+                    
                 })
                 .catch(error => {
                     console.log(error);
@@ -123,6 +129,9 @@ export default function FaqSection({ data, content }) {
                 <SubSection key={dataX[i].id} content={content} data={dataX[i]} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
             );
         }
+        result.push(
+            <SubSection key="newFaq" content={'newFaq'} data={newData} setData={setNewData} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq}  />
+        );
         return result;
     }
     

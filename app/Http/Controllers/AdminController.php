@@ -9,6 +9,7 @@ use App\Models\Question;
 use App\Http\Requests\HeroUpdateRequest;
 use App\Http\Requests\AboutUpdateRequest;
 use App\Http\Requests\QuestionUpdateRequest;
+use App\Http\Requests\QuestionAddRequest;
 
 class AdminController extends Controller
 {
@@ -94,5 +95,22 @@ class AdminController extends Controller
         $message = 'Duomenys ištrinti';
         return ['message' => $message
             ];
+    }
+
+    public function addFaq(QuestionAddRequest $request){
+        $faq = new Question();
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        //max priority
+        $priority = Question::max('priority');
+        $faq->priority = $priority + 1;
+        $faq->save();
+        $id = $faq->id;
+        $message = 'Duomenys išsaugoti';
+        return [
+            'message' => $message,
+            'id' => $id,
+            'priority' => $faq->priority
+        ];
     }
 }
