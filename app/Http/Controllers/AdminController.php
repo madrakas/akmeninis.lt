@@ -87,4 +87,12 @@ class AdminController extends Controller
         return ['message' => $message
             ];
     }
+
+    public function deleteFaq($id){
+        $faq = Question::find($id);
+        $faq->delete();
+        $message = 'Duomenys ištrinti';
+        return ['message' => $message
+            ];
+    }
 }

@@ -4,7 +4,7 @@ import AboutSubSection from './About/AboutSubsection';
 import FaqSubsection from './Faq/FaqSubsection';
 import { useState } from 'react';
 
-export default function SubSection( { content, data, maxFaqPriority, reorderFaq, saveFaqOrder } ) {
+export default function SubSection( { content, data, maxFaqPriority, reorderFaq, saveFaqOrder, deleteFaq } ) {
     const [formErr, setFormErr] = useState('');
     const [formStatus, setFormStatus] = useState('');
     const [saveData, setSaveData] = useState(null);
@@ -21,16 +21,28 @@ export default function SubSection( { content, data, maxFaqPriority, reorderFaq,
         setFormErr('');
         setFormStatus('');
     }
-    
+
+   
     let subContent= null;
+    let deleteForm = null;
 
     if (content === 'hero'){
         subContent = <HeroSubSection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
     } else if(content === 'about'){
         subContent = <AboutSubSection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
     } else if (content === 'faq'){
-        subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder}/>
-    }
+
+        subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
+        
+        deleteForm = (e) => {
+            e.preventDefault();
+            deleteFaq(data.id);
+            setResetData(1);
+            setFormErr('');
+            setFormStatus('');
+            console.log('Subsection executing deleteForm with id: ' + data.id);
+        }
+    } 
     
     return (
         // Subsection layout
@@ -40,6 +52,7 @@ export default function SubSection( { content, data, maxFaqPriority, reorderFaq,
             formStatus={formStatus}
             saveForm={saveForm}
             resetForm={resetForm}
+            deleteForm={deleteForm}
         />
     );
 }

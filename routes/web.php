@@ -42,6 +42,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::put('/about', [AdminController::class, 'updateAbout'])->name('updateAbout');
     Route::put('/faq', [AdminController::class, 'updateFaq'])->name('updateFaq');
     Route::put('/faqorder', [AdminController::class, 'updateFaqOrder'])->name('updateFaqOrder');
+    Route::delete('/faq/{id}', [AdminController::class, 'deleteFaq'])->name('deleteFaq');
 });
 
 Route::middleware('auth')->group(function () {

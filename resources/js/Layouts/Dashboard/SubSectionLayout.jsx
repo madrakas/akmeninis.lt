@@ -1,6 +1,22 @@
 const URL = 'http://akmeninis.lt';
 
-export default function HeroBody( { content, saveForm, resetForm, formErr, formStatus } ) {
+export default function HeroBody( { content, saveForm, resetForm, deleteForm, formErr, formStatus } ) {
+    // if deleteFrom is set, show delete button
+    let deleteButton = null;
+    if (deleteForm) {
+        deleteButton = (
+            <button
+                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={(e) => {deleteForm(e)}}
+            >
+                Trinti
+            </button>
+        )
+    }else{
+        deleteButton = null;
+    }
+
     return (
         <>
             {/* Error mesage bar */}
@@ -17,14 +33,16 @@ export default function HeroBody( { content, saveForm, resetForm, formErr, formS
                 { content }
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                     <button
-                        className="text-blue-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="text-green-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
                         onClick={(e) => {resetForm(e)}}
                     >
                         Atšaukti
                     </button>
+                    {/* Delete button if deleteFunction is given */}
+                    {deleteButton}
                     <button
-                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className="text-blue-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="button"
                         onClick={(e) => {saveForm(e)}}
                     >

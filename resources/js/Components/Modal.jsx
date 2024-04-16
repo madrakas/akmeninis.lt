@@ -5,8 +5,22 @@ export default function Modal({ children, show = false, maxWidth = '2xl', closea
     const close = () => {
         if (closeable) {
             onClose();
+            
         }
     };
+
+    const closeOnEscape = (e) => {
+        console.log('escape!', show);
+        if (e.key === 'Escape') {
+            close();
+        }
+    };
+
+    if (typeof window !== 'undefined') {
+        window.addEventListener('keydown', closeOnEscape);
+    }
+
+    
 
     const maxWidthClass = {
         sm: 'sm:max-w-sm',

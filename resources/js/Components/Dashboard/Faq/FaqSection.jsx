@@ -1,31 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SubSection from '../SubSection';
+import Modal from '@/Components/Modal';
+import infoModal from '@/Components/Dashboard/InfoModal';
+import DangerButton from '@/Components/DangerButton';
+import SecondaryButton from '@/Components/SecondaryButton';
+import InfoModal from '@/Components/Dashboard/InfoModal';
+
 
 
 export default function FaqSection({ data, content }) {
 
     const maxFaqPriority = Object.keys(data).length;
+    const [visibleConfirm, setVisibleConfirm] = useState(false);
+    const [deleteID, setDeleteID] = useState(false);
+    const [newData, setNewData] = useState(data);
+    const [modalPlaceholder, setModalPlaceholder] = useState('');
     
+
     
     const initialFaqOrder = () => {
         const result = [];
-        data.sort((a, b) => a.priority - b.priority);
-        for (let i = 0; i < data.length; i++) {
+        newData.sort((a, b) => a.priority - b.priority);
+        console.log('newData:' + newData);
+        for (let i = 0; i < newData.length; i++) {
             result.push([
-                data[i].id,
-                data[i].priority
+                
+                newData[i].id,
+                newData[i].priority
             ]);
         }
-        
         return result;
     }
+
     const [faqOrder, setFaqOrder] = useState(initialFaqOrder());
 
     const saveFaqOrder= () => {
         
         const orders = [];
-        Object.keys(data).forEach(key => {
-            orders.push([data[key].id, data[key].priority]);
+        Object.keys(newData).forEach(key => {
+            orders.push([newData[key].id, newData[key].priority]);
         });
 
         //use axios to update faq order
@@ -35,7 +48,7 @@ export default function FaqSection({ data, content }) {
     }
 
     const reorderFaq = (id, priority) => {
-        const tmpData = [...data];
+        const tmpData = [...newData];
 
         const oldIndex = tmpData.findIndex(d => d.priority === priority);
         const oldID = tmpData[oldIndex].id;
@@ -64,26 +77,89 @@ export default function FaqSection({ data, content }) {
         setFaq(orderedFaq(tmpData));
     }
 
+    const deleteFaq = (id) => {
+        // Prompt user for confirmation with modal 
+        setVisibleConfirm(true);
+        setDeleteID(id);
+        
+    }
+
+    const confirmDelete = (confirmed) => {
+        // setVisibleConfirm(false);
+        if (confirmed) {
+            //delete with axios
+            axios.delete('/admin/faq/' + deleteID)
+                .then(response => {
+                    const tempData = data.filter(d => d.id !== deleteID);
+                    setNewData(tempData);
+                    setFaq(orderedFaq(tempData));
+                    setDeleteID(null);
+                    console.log('Deleted ID: ' + deleteID);
+                    setModalPlaceholder(<InfoModal content={response.data.message} />);
+                })
+                .catch(error => {
+                    console.log(error);
+                    setModalPlaceholder(<InfoModal content={error.response.data.message} />);
+                });
+                
+            setVisibleConfirm(false);
+
+        }else{
+            console.log('cancelled');
+            setDeleteID(null);
+            setVisibleConfirm(false);
+        }
+        // reset();
+    }
+
     const orderedFaq= (dataX) => {
         const result = [];
         dataX.sort((a, b) => a.priority - b.priority);
-
 
         for (let i = 0; i < dataX.length; i++) {
             // subsections array
 
             result.push(
-                <SubSection key={dataX[i].id} content={content} data={dataX[i]} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder}/>
+                <SubSection key={dataX[i].id} content={content} data={dataX[i]} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
             );
         }
         return result;
-        
     }
     
     const [faq, setFaq] = useState(orderedFaq(data));
 
     return (
         <>
+            <Modal show={visibleConfirm} >
+                <form  className="p-6">
+                    <h2 className="text-lg font-medium text-gray-900">
+                        Dėmesio!
+                    </h2>
+
+                    <p className="mt-1 text-sm text-gray-600">
+                        Ar tikrai norite ištrinti šį klausimą?
+                    </p>
+
+                    <div className="mt-6 flex justify-end">
+                        <SecondaryButton onClick={(e) => {
+                            e.preventDefault(); 
+                            confirmDelete(false);
+                            } 
+                        }>Ne</SecondaryButton>
+
+                        <DangerButton className="ms-3" onClick={
+                            (e) => {
+                                e.preventDefault();
+                                confirmDelete(true);
+                            }
+                        }>
+                            Trinti klausimą
+                        </DangerButton>
+                    </div>
+
+                </form>
+            </Modal>
+            {modalPlaceholder}
           {faq}
         </>
     );
