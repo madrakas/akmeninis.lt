@@ -2,9 +2,10 @@ import SubSectionLayout from '@/Layouts/Dashboard/SubSectionLayout';
 import HeroSubSection from './Hero/HeroSubsection';
 import AboutSubSection from './About/AboutSubsection';
 import FaqSubsection from './Faq/FaqSubsection';
+import FaqSubsectionAdd  from './Faq/FaqSubsectionAdd';
 import { useState } from 'react';
 
-export default function SubSection( { content, data, maxFaqPriority, reorderFaq, saveFaqOrder, deleteFaq } ) {
+export default function SubSection( { content, data, setData, maxFaqPriority, reorderFaq, saveFaqOrder, deleteFaq } ) {
     const [formErr, setFormErr] = useState('');
     const [formStatus, setFormStatus] = useState('');
     const [saveData, setSaveData] = useState(null);
@@ -31,9 +32,7 @@ export default function SubSection( { content, data, maxFaqPriority, reorderFaq,
     } else if(content === 'about'){
         subContent = <AboutSubSection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}/>;
     } else if (content === 'faq'){
-
         subContent = <FaqSubsection data={data} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
-        
         deleteForm = (e) => {
             e.preventDefault();
             deleteFaq(data.id);
@@ -42,7 +41,9 @@ export default function SubSection( { content, data, maxFaqPriority, reorderFaq,
             setFormStatus('');
             console.log('Subsection executing deleteForm with id: ' + data.id);
         }
-    } 
+    } else if (content === 'newFaq'){
+        subContent  = <FaqSubsectionAdd data={data} setData={setData} saveData={saveData} setSaveData={setSaveData} resetData={resetData} setResetData={setResetData} setFormStatus={setFormStatus} setFormErr={setFormErr}></FaqSubsectionAdd>
+    }
     
     return (
         // Subsection layout
