@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Hero;
 use App\Models\Description;
+use App\Models\Category;
 use App\Models\Question;
 use App\Models\Contact;
 use App\Http\Requests\HeroUpdateRequest;
@@ -22,6 +23,7 @@ class AdminController extends Controller
             'about'=> Description::first(),
             'faq' => Question::orderBy('priority')->get(),
             'contact' => Contact::first(),
+            'categories' => Category::orderBy('priority')->get(),
         ];
             
         return Inertia::render('Admin/Index',  [
