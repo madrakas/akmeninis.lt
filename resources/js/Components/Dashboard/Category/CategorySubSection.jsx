@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 const URL = 'http://akmeninis.lt';
 
-export default function CategorySubSection( { data, maxCatPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderCat, saveCatOrder  } ) {
+export default function CategorySubsection( { data, maxCatPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderCat, saveCatOrder  } ) {
     const [cat, setCat] = useState(data);
     const [catName, setCatName] = useState(data.name);
     const [catDescription, setCatDescription] = useState(data.description);

@@ -3,7 +3,8 @@ import HeroSubSection from './Hero/HeroSubsection';
 import AboutSubSection from './About/AboutSubsection';
 import FaqSubsection from './Faq/FaqSubsection';
 import FaqSubsectionAdd  from './Faq/FaqSubsectionAdd';
-import CategorySubSection from './Category/CategorySubSection';
+import CategorySubsection from './Category/CategorySubsection';
+import CategorySubsectionAdd from './Category/CategorySubsectionAdd';
 import ContactSubsection from './Contact/ContactSubsection';
 import { useState } from 'react';
 
@@ -56,7 +57,7 @@ export default function SubSection( { content, data, setData, maxFaqPriority, re
                             setFormErr={setFormErr}
                         />
     } else if (content === 'cat'){
-        subContent = <CategorySubSection 
+        subContent = <CategorySubsection 
                             data={data} 
                             saveData={saveData} 
                             setSaveData={setSaveData} 
@@ -75,8 +76,18 @@ export default function SubSection( { content, data, setData, maxFaqPriority, re
             setResetData(1);
             setFormErr('');
             setFormStatus('');
-            console.log('Subsection executing deleteForm with id: ' + data.id);
         }
+    } else if (content === 'newCat'){
+        subContent = <CategorySubsectionAdd
+                            data={data} 
+                            resetData={resetData}
+                            setData={setData} 
+                            saveData={saveData} 
+                            setSaveData={setSaveData} 
+                            setResetData={setResetData} 
+                            setFormStatus={setFormStatus} 
+                            setFormErr={setFormErr}
+                        />;
     }
     
     return (
