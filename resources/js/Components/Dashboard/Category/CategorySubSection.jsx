@@ -1,29 +1,28 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'; 
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 const URL = 'http://akmeninis.lt';
 
-export default function FaqSubsection( { data, maxFaqPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderFaq, saveFaqOrder } ){
-// export default function FaqSubsection( { data, maxFaqPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderFaq, editData } ){
-    const [faq, setFaq] = useState(data);
-    const [faqQuestion, setFaqQuestion] = useState(data.question);
-    const [faqAnswer, setFaqAnswer] = useState(data.answer);
-    const [faqPriority, setFaqPriority] = useState(data.priority);
+export default function CategorySubSection( { data, maxCatPriority, saveData, setSaveData, resetData, setResetData, setFormStatus, setFormErr, reorderCat, saveCatOrder  } ) {
+    const [cat, setCat] = useState(data);
+    const [catName, setCatName] = useState(data.name);
+    const [catDescription, setCatDescription] = useState(data.description);
+    const [catPriority, setCatPriority] = useState(data.priority);
 
-    const editFaqPriority = function(newFaqPriority){
-        if (newFaqPriority <= 0) {
-            newFaqPriority = 1;
-        } else if (newFaqPriority > maxFaqPriority) {
-            newFaqPriority = maxFaqPriority;
+    const editCatPriority = function(newCatPriority){
+        if (newCatPriority <= 0) {
+            newCatPriority = 1;
+        } else if (newCatPriority > maxCatPriority) {
+            newCatPriority = maxCatPriority;
         }
-        setFaqPriority(newFaqPriority);
-        reorderFaq(faq.id, newFaqPriority);
+        setCatPriority(newCatPriority);
+        reorderCat(cat.id, newCatPriority);
     }
 
     //If save button is clicked in SubSection
     useEffect(() => {
         if (saveData) {
-            saveFaq();
+            saveCat();
             setSaveData(null);
         }
     }, [saveData]);
@@ -31,43 +30,42 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
     //If reset button is clicked in SubSection
     useEffect(() => {
         if (resetData) {
-            setFaqQuestion(faq.question);
-            setFaqAnswer(faq.answer);
-            // setFaqPriority(faq.priority);
+            setCatName(cat.name);
+            setCatDescription(cat.description);
+            // setCatPriority(cat.priority);
             setResetData(null);
         }
     }, [resetData]);
     
-    // Update FAQ
-    const saveFaq = async () => {
+    // Update category
+    const saveCat = async () => {
         
-        //use axios to update FAQ
-        await axios.put(URL + '/admin/faq', {
-            id: faq.id,
-            question: faqQuestion,
-            answer: faqAnswer,
-            priority: faqPriority
+        //use axios to update category
+        await axios.put(URL + '/admin/cat', {
+            id: cat.id,
+            name: catName,
+            description: catDescription,
+            priority: catPriority
         })
             .then(response => {
-                setFaq(
+                setCat( 
                     {
-                        id: faq.id,
-                        question: faqQuestion,
-                        answer: faqAnswer,
-                        priority: faqPriority
+                        id: cat.id,
+                        name: catName,
+                        description: catDescription,
+                        priority: catPriority
                     }
                 );
                 setFormErr('');
                 setFormStatus(response.data.message ? response.data.message : '');
-                saveFaqOrder();
                 setSaveData(null);
-
+                saveCatOrder();
             })
             .catch(error => {
                 setFormErr(error.response.data.message);
             });
     };
-
+    
     return (
         <>
             <div className="faq-item" key={data.id}>
@@ -81,38 +79,36 @@ export default function FaqSubsection( { data, maxFaqPriority, saveData, setSave
                         
                         <button type="button" className="p-2.5 ml-4" onClick={() => {
                             // setFaqPriority(faqPriority + 1);
-                            editFaqPriority(faqPriority + 1);
+                            editCatPriority(catPriority + 1);
                         }}> 
                             <FontAwesomeIcon icon={faArrowDown} />
                         </button>
                         {/* Priority decrease button */}
                         <button type="button" className="p-2.5 ml-4" onClick={() => {
                             // setFaqPriority(faqPriority - 1);
-                            editFaqPriority(faqPriority - 1);
+                            editCatPriority(catPriority - 1);
                         }}>
                             <FontAwesomeIcon icon={faArrowUp} />
                         </button>
                     </div>
                     
 
-                    <label className="block font-medium text-sm text-gray-700">Klausimas</label>
+                    <label className="block font-medium text-sm text-gray-700">Pavadinimas</label>
                     <input type="text"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 "
-                        onChange={ (e) => {setFaqQuestion(e.target.value)}}                         
-                        value={faqQuestion}
+                        onChange={ (e) => {setCatName(e.target.value)}}                         
+                        value={catName}
                     ></input>
-                    <label className="block font-medium text-sm text-gray-700 ml-4" >Atsakymas</label>
+                    <label className="block font-medium text-sm text-gray-700 ml-4" >Aprašymas</label>
                     
                     <textarea rows="3" 
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-                        onChange={ (e) => {setFaqAnswer(e.target.value)}} 
-                        value={faqAnswer}>
-                    </textarea>                   
-
+                        onChange={ (e) => {setCatDescription(e.target.value)}}
+                        value={catDescription}
+                    ></textarea>
                 </div>
             </div>
-        
         </>
-    )
-}
+    );
 
+}

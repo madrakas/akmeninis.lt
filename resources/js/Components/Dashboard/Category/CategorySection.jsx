@@ -1,3 +1,5 @@
+
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import SubSection from '../SubSection';
 import Modal from '@/Components/Modal';
@@ -6,23 +8,21 @@ import DangerButton from '@/Components/DangerButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
 
-export default function FaqSection({ data, content }) {
-    const maxFaqPriority = Object.keys(data).length;
+export default function CategorySection( { data } ) {
+    const maxCatPriority = Object.keys(data).length;
     const [visibleConfirm, setVisibleConfirm] = useState(false);
     const [deleteID, setDeleteID] = useState(false);
     const [newData, setNewData] = useState(data);
     const [modalPlaceholder, setModalPlaceholder] = useState('');
 
     useEffect(() => {
-        setFaq(orderedFaq(newData));
+        setCats(orderedCats(newData));
     }, [newData])
     
-
-    
-    const initialFaqOrder = () => {
+    const initialCatOrder = () => {
         const result = [];
         newData.sort((a, b) => a.priority - b.priority);
-        console.log('newData:' + newData);
+        // console.log('newData:' + newData);
         for (let i = 0; i < newData.length; i++) {
             result.push([
                 
@@ -33,22 +33,24 @@ export default function FaqSection({ data, content }) {
         return result;
     }
 
-    const [faqOrder, setFaqOrder] = useState(initialFaqOrder());
+    const [catOrder, setCatOrder] = useState(initialCatOrder());
+    
+    const saveCatOrder= () => {
 
-    const saveFaqOrder= () => {
-        
         const orders = [];
-        Object.keys(newData).forEach(key => {
+        Object.keys(newData).forEach(key => { 
             orders.push([newData[key].id, newData[key].priority]);
         });
+        
+        //use axios to update cat order
 
-        //use axios to update faq order
-        axios.put('/admin/faqorder', {
-            faqOrder: JSON.stringify(orders)
+        axios.put('/admin/catorder', {
+            catOrder: JSON.stringify(orders)
         })
     }
 
-    const reorderFaq = (id, priority) => {
+
+    const reorderCat = (id, priority) => {
         const tmpData = [...newData];
         const oldIndex = tmpData.findIndex(d => d.priority === priority);
         const oldID = tmpData[oldIndex].id;
@@ -64,35 +66,33 @@ export default function FaqSection({ data, content }) {
         });
 
         tmpData.sort((a, b) => a.priority - b.priority);
-        const newFaqOrder = [];
+        const newCatOrder = [];
 
         for (let i = 0; i < tmpData.length; i++) {
-            newFaqOrder.push([
+            newCatOrder.push([
                 tmpData[i].id,
                 tmpData[i].priority
             ]);
         }
 
-        setFaqOrder(newFaqOrder);
-        setFaq(orderedFaq(tmpData));
-    }
+        setCatOrder(newCatOrder);
+        setCats(orderedCats(tmpData));
+    }  
 
-    const deleteFaq = (id) => {
-        // Prompt user for confirmation with modal 
+    const deleteCat = (id) => {
         setDeleteID(id);
         setVisibleConfirm(true);
-        
     }
 
     const confirmDelete = (confirmed) => {
         // setVisibleConfirm(false);
         if (confirmed) {
             //delete with axios
-            axios.delete('/admin/faq/' + deleteID)
+            axios.delete('/admin/cat/' + deleteID)
                 .then(response => {
                     const tempData = newData.filter(d => d.id !== deleteID);
                     setNewData(tempData);
-                    setFaq(orderedFaq(tempData));
+                    setCats(orderedCats(tempData));
                     setDeleteID(null);
                     console.log('Deleted ID: ' + deleteID);
                     setModalPlaceholder(<InfoModal content={response.data.message} />);
@@ -106,32 +106,43 @@ export default function FaqSection({ data, content }) {
             setVisibleConfirm(false);
 
         }else{
-            console.log('cancelled');
+            console.log('cancelled');   
             setDeleteID(null);
             setVisibleConfirm(false);
         }
-        // reset();
-    }
+    }   
 
-    const orderedFaq= (dataX) => {
+    const orderedCats = (dataX) => {
         const result = [];
         dataX.sort((a, b) => a.priority - b.priority);
-
         for (let i = 0; i < dataX.length; i++) {
-            // subsections array
-
             result.push(
-                <SubSection key={dataX[i].id} content={content} data={dataX[i]} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq} saveFaqOrder={saveFaqOrder} deleteFaq={deleteFaq}/>
+                <SubSection key={dataX[i].id} content={'cat'} data={dataX[i]} maxCatPriority={maxCatPriority} reorderCat={reorderCat} saveCatOrder={saveCatOrder} deleteCat={deleteCat}/>
             );
         }
-        result.push(
-            <SubSection key="newFaq" content={'newFaq'} data={newData} setData={setNewData} maxFaqPriority={maxFaqPriority} reorderFaq={reorderFaq}  />
-        );
+        // result.push(
+        //     <SubSection key="newCat" content={'newCat'} data={newData} setData={setNewData} maxCatPriority={maxCatPriority} reorderCat={reorderCat}  />
+        // );
         return result;
     }
-    
-    const [faq, setFaq] = useState(orderedFaq(data));
 
+    const [cat, setCat] = useState(orderedCats(newData));
+
+
+    const initialCats = (catD) => {
+        const cats = [];
+        Object.keys(catD).forEach(key => {
+            cats.push([
+                catD[key].id,
+                catD[key].priority
+            ]);
+        });
+        // console.log(cats);
+        return cats;
+    }
+
+    const [cats, setCats] = useState(orderedCats(data));
+    
     return (
         <>
             <Modal show={visibleConfirm} >
@@ -164,7 +175,7 @@ export default function FaqSection({ data, content }) {
                 </form>
             </Modal>
             {modalPlaceholder}
-          {faq}
+            {cats}
         </>
     );
 }

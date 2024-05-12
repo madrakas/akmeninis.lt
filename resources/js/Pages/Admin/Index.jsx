@@ -17,6 +17,7 @@ export default function Index({ auth, data }) {
                 <Section title="Titulinis tekstas" content="hero" data={data.hero}/>
                 <Section title="Apie tekstas" content="about" data={data.about} />
                 <Section title='D.U.K.' content="faq" data={data.faq} />
+                <Section title='Kategorijos' content="categories" data={data.categories} />
                 <Section title='Kontaktai' content="contact" data={data.contact} />
             </div>
         </AuthenticatedLayout>
