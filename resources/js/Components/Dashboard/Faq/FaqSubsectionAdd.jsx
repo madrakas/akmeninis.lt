@@ -62,16 +62,16 @@ export default function FaqSubsectionAdd( { data, setData, saveData, setSaveData
                     
                     <label className="block font-medium text-sm text-gray-700">Klausimas</label>
                     <input type="text"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5 "
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
                         onChange={ (e) => {setFaqQuestion(e.target.value)}}                         
                         value={faqQuestion}
                     ></input>
                     <label className="block font-medium text-sm text-gray-700 ml-4" >Atsakymas</label>
-                    <input type="text" 
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ml-4 mr-6" 
-                        onChange={ (e) => {setFaqAnswer(e.target.value)}}
-                        value={faqAnswer}
-                    ></input>
+                    <textarea rows="3" 
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+                        onChange={ (e) => {setFaqAnswer(e.target.value)}} 
+                        value={faqAnswer}>
+                    </textarea>                   
                 </div>
             </div>
         

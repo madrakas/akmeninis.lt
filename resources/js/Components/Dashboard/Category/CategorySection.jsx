@@ -129,14 +129,11 @@ export default function CategorySection( { data } ) {
                 <SubSection key={dataX[i].id} content={'cat'} data={dataX[i]} maxCatPriority={maxCatPriority} reorderCat={reorderCat} saveCatOrder={saveCatOrder} deleteCat={deleteCat}/>
             );
         }
-        // result.push(
-        //     <SubSection key="newCat" content={'newCat'} data={newData} setData={setNewData} maxCatPriority={maxCatPriority} reorderCat={reorderCat}  />
-        // );
+        result.push(
+            <SubSection key="newCat" content={'newCat'} data={newData} setData={setNewData} maxCatPriority={maxCatPriority} reorderCat={reorderCat}  />
+        );
         return result;
     }
-
-    const [cat, setCat] = useState(orderedCats(newData));
-
 
     const initialCats = (catD) => {
         const cats = [];
@@ -161,7 +158,7 @@ export default function CategorySection( { data } ) {
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Ar tikrai norite ištrinti šį klausimą?
+                        Ar tikrai norite ištrinti šią kategoriją?
                     </p>
 
                     <div className="mt-6 flex justify-end">
@@ -177,7 +174,7 @@ export default function CategorySection( { data } ) {
                                 confirmDelete(true);
                             }
                         }>
-                            Trinti klausimą
+                            Trinti kategoriją
                         </DangerButton>
                     </div>
 

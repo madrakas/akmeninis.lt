@@ -147,6 +147,19 @@ class AdminController extends Controller
         return ['message' => $message];
     }
 
+    public function addCat(CategoryUpdateRequest $request){
+        $cat = new Category();
+        $cat->name = $request->name;
+        $priority = Category::max('priority');
+        $cat->priority = $priority + 1;
+        $cat->description = $request->description;
+        // Temporal image placholder
+        $cat->featured_image_id = 0;
+        $cat->save();
+        $message = 'Duomenys išsaugoti';
+        return ['message' => $message];
+    }
+
     public function updateContact(ContactUpdateRequest $request){
         $contactId = $request->id;
         $contact = Contact::find($contactId);
