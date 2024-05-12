@@ -71,7 +71,7 @@ export default function SubSection( { content, data, setData, maxFaqPriority, re
                         />;
         deleteForm = (e) => {
             e.preventDefault();
-            deleteFaq(data.id);
+            deleteCat(data.id);
             setResetData(1);
             setFormErr('');
             setFormStatus('');
