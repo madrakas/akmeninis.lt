@@ -6,10 +6,7 @@ import DangerButton from '@/Components/DangerButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 
 
-
-
 export default function FaqSection({ data, content }) {
-
     const maxFaqPriority = Object.keys(data).length;
     const [visibleConfirm, setVisibleConfirm] = useState(false);
     const [deleteID, setDeleteID] = useState(false);
@@ -17,8 +14,6 @@ export default function FaqSection({ data, content }) {
     const [modalPlaceholder, setModalPlaceholder] = useState('');
 
     useEffect(() => {
-        console.log('newData: ' + newData);
-        
         setFaq(orderedFaq(newData));
     }, [newData])
     
@@ -84,8 +79,8 @@ export default function FaqSection({ data, content }) {
 
     const deleteFaq = (id) => {
         // Prompt user for confirmation with modal 
-        setVisibleConfirm(true);
         setDeleteID(id);
+        setVisibleConfirm(true);
         
     }
 

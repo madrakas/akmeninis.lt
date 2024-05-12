@@ -12,6 +12,7 @@ use App\Http\Requests\HeroUpdateRequest;
 use App\Http\Requests\AboutUpdateRequest;
 use App\Http\Requests\QuestionUpdateRequest;
 use App\Http\Requests\QuestionAddRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Requests\ContactUpdateRequest;
 
 class AdminController extends Controller
@@ -37,7 +38,7 @@ class AdminController extends Controller
         $hero = Hero::find($heroId);
         $hero->description = $request->description;
         $hero->save();
-        $message = 'Duomenys išdsaugoti';
+        $message = 'Duomenys išsaugoti';
         return ['hero' => Hero::find($heroId), 
                 'message' => $message
             ];
@@ -48,7 +49,7 @@ class AdminController extends Controller
         $about = Description::find($descriptionID);
         $about->description = $request->description;
         $about->save();
-        $message = 'Duomenys išdsaugoti';
+        $message = 'Duomenys išsaugoti';
         return ['about' => Description::find($descriptionID), 
                 'message' => $message
             ];
@@ -61,7 +62,7 @@ class AdminController extends Controller
         $faq->answer = $request->answer;
         $faq->priority = $request->priority;
         $faq->save();
-        $message = 'Duomenys išdsaugoti';
+        $message = 'Duomenys išsaugoti';
         return ['faq' => Question::find($faqId), 
                 'message' => $message
             ];
@@ -79,27 +80,25 @@ class AdminController extends Controller
             $faqId = $order[0];
             $faq = Question::find($faqId);
 
-            dump('Faq id: ' . $faq->id . 
-                '<br />Faq priority: ' . $faq->priority . 
-                '<br/>Order ID: ' . $order[0] .
-                '<br/>New priority: ' . $order[1]);
+            // dump('Faq id: ' . $faq->id . 
+            //     '<br />Faq priority: ' . $faq->priority . 
+            //     '<br/>Order ID: ' . $order[0] .
+            //     '<br/>New priority: ' . $order[1]);
 
             
             $faq->priority = $order[1];
             $faq->save();
         }
 
-        $message = 'Duomenys išdsaugoti';
-        return ['message' => $message
-            ];
+        $message = 'Duomenys išsaugoti';
+        return ['message' => $message];
     }
 
     public function deleteFaq($id){
         $faq = Question::find($id);
         $faq->delete();
         $message = 'Duomenys ištrinti';
-        return ['message' => $message
-            ];
+        return ['message' => $message];
     }
 
     public function addFaq(QuestionAddRequest $request){
@@ -116,7 +115,29 @@ class AdminController extends Controller
             'message' => $message,
             'id' => $id,
             'priority' => $faq->priority
-        ];
+            ];
+    }
+
+    public function updateCat(CategoryUpdateRequest $request){
+        $catId = $request->id;
+        $cat = Category::find($catId);
+        $cat->name = $request->name;
+        $cat->priority = $request->priority;
+        $cat->save();
+        $message = 'Duomenys išsaugoti';
+        return ['message' => $message];
+    }
+
+    public function updateCatOrder(Request $request){
+        $orders = json_decode($request->catOrder, true);
+        foreach ($orders as $order) {
+            $catId = $order[0];
+            $cat = Category::find($catId);
+            $cat->priority = $order[1];
+            $cat->save();
+        }
+        $message = 'Duomenys išsaugoti';
+        return ['message' => $message];
     }
 
     public function updateContact(ContactUpdateRequest $request){
@@ -127,7 +148,7 @@ class AdminController extends Controller
         $contact->email = $request->email;
         $contact->worktime = $request->worktime;
         $contact->save();
-        $message = 'Duomenys išdsaugoti';
+        $message = 'Duomenys išsaugoti';
         return ['contact' => Contact::find($contactId), 
                 'message' => $message
             ];
