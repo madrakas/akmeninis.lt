@@ -140,6 +140,13 @@ class AdminController extends Controller
         return ['message' => $message];
     }
 
+    public function deleteCat($id){
+        $cat = Category::find($id);
+        $cat->delete();
+        $message = 'Duomenys ištrinti';
+        return ['message' => $message];
+    }
+
     public function updateContact(ContactUpdateRequest $request){
         $contactId = $request->id;
         $contact = Contact::find($contactId);
