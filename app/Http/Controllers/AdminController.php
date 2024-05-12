@@ -75,7 +75,7 @@ class AdminController extends Controller
         // userialize orders Json
         $orders = json_decode($request->faqOrder, true);
         
-        dump($orders);
+        // dump($orders);
         foreach ($orders as $order) {
             $faqId = $order[0];
             $faq = Question::find($faqId);

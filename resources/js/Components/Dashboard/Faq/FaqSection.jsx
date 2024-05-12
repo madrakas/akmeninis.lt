@@ -17,26 +17,9 @@ export default function FaqSection({ data, content }) {
         setFaq(orderedFaq(newData));
     }, [newData])
     
-
-    
-    const initialFaqOrder = () => {
-        const result = [];
-        newData.sort((a, b) => a.priority - b.priority);
-        console.log('newData:' + newData);
-        for (let i = 0; i < newData.length; i++) {
-            result.push([
-                
-                newData[i].id,
-                newData[i].priority
-            ]);
-        }
-        return result;
-    }
-
-    const [faqOrder, setFaqOrder] = useState(initialFaqOrder());
+  
 
     const saveFaqOrder= () => {
-        
         const orders = [];
         Object.keys(newData).forEach(key => {
             orders.push([newData[key].id, newData[key].priority]);
@@ -50,10 +33,19 @@ export default function FaqSection({ data, content }) {
 
     const reorderFaq = (id, priority) => {
         const tmpData = [...newData];
-        const oldIndex = tmpData.findIndex(d => d.priority === priority);
+        let oldIndex = tmpData.findIndex(d => d.priority === priority);
+        if (oldIndex === -1) { 
+            // fix missing indexes
+            tmpData.sort((a, b) => a.priority - b.priority);
+            for (let i = 0; i < tmpData.length; i++) {
+                tmpData[i].priority = i + 1;
+            }
+            oldIndex = tmpData.findIndex(d => d.priority === priority);
+        }
         const oldID = tmpData[oldIndex].id;
         const newIndex = tmpData.findIndex(d => d.id === id);
         const oldPriority = tmpData[newIndex].priority;
+
 
         tmpData.map((d, i) => {
             if (d.id === id) {
@@ -73,8 +65,8 @@ export default function FaqSection({ data, content }) {
             ]);
         }
 
-        setFaqOrder(newFaqOrder);
         setFaq(orderedFaq(tmpData));
+        console.log(tmpData);
     }
 
     const deleteFaq = (id) => {
@@ -94,9 +86,7 @@ export default function FaqSection({ data, content }) {
                     setNewData(tempData);
                     setFaq(orderedFaq(tempData));
                     setDeleteID(null);
-                    console.log('Deleted ID: ' + deleteID);
                     setModalPlaceholder(<InfoModal content={response.data.message} />);
-                    
                 })
                 .catch(error => {
                     console.log(error);
@@ -106,7 +96,7 @@ export default function FaqSection({ data, content }) {
             setVisibleConfirm(false);
 
         }else{
-            console.log('cancelled');
+            // console.log('cancelled');
             setDeleteID(null);
             setVisibleConfirm(false);
         }

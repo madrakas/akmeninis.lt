@@ -52,7 +52,15 @@ export default function CategorySection( { data } ) {
 
     const reorderCat = (id, priority) => {
         const tmpData = [...newData];
-        const oldIndex = tmpData.findIndex(d => d.priority === priority);
+        let oldIndex = tmpData.findIndex(d => d.priority === priority);
+        if (oldIndex === -1) {
+            // fix missing indexes
+            tmpData.sort((a, b) => a.priority - b.priority);
+            for (let i = 0; i < tmpData.length; i++) {
+                tmpData[i].priority = i + 1;
+            }
+            oldIndex = tmpData.findIndex(d => d.priority === priority);
+        }
         const oldID = tmpData[oldIndex].id;
         const newIndex = tmpData.findIndex(d => d.id === id);
         const oldPriority = tmpData[newIndex].priority;
@@ -80,6 +88,7 @@ export default function CategorySection( { data } ) {
     }  
 
     const deleteCat = (id) => {
+        // Promt user for confirmation with modal
         setDeleteID(id);
         setVisibleConfirm(true);
     }
