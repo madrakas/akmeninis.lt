@@ -122,6 +122,7 @@ class AdminController extends Controller
         $catId = $request->id;
         $cat = Category::find($catId);
         $cat->name = $request->name;
+        $cat->description = $request->description;
         $cat->priority = $request->priority;
         $cat->save();
         $message = 'Duomenys išsaugoti';

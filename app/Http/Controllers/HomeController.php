@@ -12,8 +12,6 @@ use App\Models\Hero;
 class HomeController extends Controller
 {
     public function index() {
-        // categories sorted by priority
-
         $categories = Category::orderBy('priority')->get();
         $description = Description::first();
         $questions = Question::orderBy('priority')->get();
