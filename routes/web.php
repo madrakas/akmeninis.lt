@@ -31,7 +31,7 @@ use App\Http\Controllers\AdminController;
 // });
 
 // Route::get('/Dashboard', function () {
-//     return Inertia::render('Admin/Index');
+//     return Inertia::render('admin.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 
