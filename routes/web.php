@@ -30,9 +30,10 @@ use App\Http\Controllers\AdminController;
 //     return Inertia::render('Welcome', );
 // });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/Dashboard', function () {
+//     return Inertia::render('Admin/Index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 
